@@ -3,10 +3,8 @@ import Base from 'ember-simple-auth/authenticators/base';
 import { request } from 'ic-ajax';
 
 export default Base.extend({
-  restore(data) {
-    return new Promise(function (resolve, reject) {
-      reject();
-    });
+  restore() {
+    return request({ url: '/session' });
   },
   authenticate(username, password) {
     return request({
@@ -14,9 +12,7 @@ export default Base.extend({
       type: `POST`
     });
   },
-  invalidate(data) {
-    return new Promise(function (resolve, reject) {
-      reject();
-    });
+  invalidate() {
+    return request({ url: '/logout', type: 'POST' });
   }
 });
