@@ -7,10 +7,7 @@ export default Base.extend({
     return request({ url: '/session' });
   },
   authenticate(username, password) {
-    return request({
-      url: `/login?username=${username}&password=${password}`,
-      type: `POST`
-    });
+    return request({ url: '/login', type: 'POST', data: { username, password } });
   },
   invalidate() {
     return request({ url: '/logout', type: 'POST' });
