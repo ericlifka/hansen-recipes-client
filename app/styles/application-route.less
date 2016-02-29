@@ -5,13 +5,22 @@
   height: 100%;
 
   .nav-bar {
-    order: 1;
+    order: 2;
     background-color: grey;
   }
 
   .outlet {
-    order: 2;
+    order: 1;
     height: 100%;
     width: 100%;
+  }
+
+  @media (min-width: 1000px) {
+    .nav-bar {
+      order: 1;
+    }
+    .outlet {
+      order: 2;
+    }
   }
 }
