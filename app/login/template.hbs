@@ -1,15 +1,38 @@
 <form {{action 'processForm' on='submit'}}>
 
     <div class="input-group">
+        <label for='username'>Username</label>
       {{input id='username' placeholder='username' value=username}}
     </div>
 
     <div class="input-group">
+        <lable for='password'>Password</lable>
       {{input id='password' placeholder='password' type='password' value=password}}
     </div>
 
+  {{#if register}}
+      <div class="input-group">
+          <lable for='repeat'>Repeat</lable>
+        {{input id='repeat' placeholder='repeat password' type='password' value=passwordRepeat}}
+      </div>
+  {{/if}}
+
     <div class="input-group">
-        <button type="submit">Login</button>
+        <button type="submit">
+          {{#if register}}
+              Register
+          {{else}}
+              Login
+          {{/if}}
+        </button>
+        <button type="button" {{action 'toggleRegistration'}}>
+           {{#if register}}
+              Cancel
+          {{else}}
+              Register
+          {{/if}}
+        </button>
+
     </div>
 
   {{#if errorMessage}}
