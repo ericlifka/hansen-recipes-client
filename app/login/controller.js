@@ -18,6 +18,9 @@ export default Controller.extend({
     toggleRegistration() {
       this.clearForm();
       this.toggleProperty('register');
+      Ember.run.next(() => {
+        $('input#username').focus();
+      });
     }
   },
 
@@ -35,10 +38,13 @@ export default Controller.extend({
 
     request({ url: '/register', type: 'POST', data: { username, password } })
       .then(result => {
-        this.set('errorMessage', 'Registration successful, please login to continue');
         this.set('register', false);
         this.clearForm();
         this.set('username', result.user.username);
+        this.set('errorMessage', 'Registration successful, please login to continue');
+        Ember.run.next(() => {
+          $('input#password').focus();
+        });
       })
       .catch(error => {
         this.set('errorMessage', reason.error || reason);
