@@ -4,6 +4,12 @@ const { Component } = Ember;
 export default Component.extend({
   register: false,
 
+  didInsertElement() {
+    this._super(...arguments);
+
+    Ember.run.next(() => this.$('input#username').focus());
+  },
+
   actions: {
     processForm() {
       if (this.get('register')) {
@@ -15,9 +21,7 @@ export default Component.extend({
     toggleRegistration() {
       this.clearForm();
       this.toggleProperty('register');
-      Ember.run.next(() => {
-        this.$('input#username').focus();
-      });
+      Ember.run.next(() => this.$('input#username').focus());
     }
   },
 
@@ -40,9 +44,7 @@ export default Component.extend({
         this.clearForm();
         this.set('username', result.user.username);
         this.set('errorMessage', 'Registration successful, please login to continue');
-        Ember.run.next(() => {
-          this.$('input#password').focus();
-        });
+        Ember.run.next(() => this.$('input#password').focus());
       })
       .catch(reason => {
         this.set('errorMessage', reason.error || reason);
