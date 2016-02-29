@@ -16,6 +16,7 @@ export default Controller.extend({
       }
     },
     toggleRegistration() {
+      this.clearForm();
       this.toggleProperty('register');
     }
   },
@@ -23,6 +24,7 @@ export default Controller.extend({
   processLogin() {
     const { username, password } = this.getProperties('username', 'password');
     this.get('session').authenticate('authenticator:username-password', username, password)
+      .then(() => this.clearForm())
       .catch(reason => {
         this.set('errorMessage', reason.error || reason);
       });
@@ -35,11 +37,18 @@ export default Controller.extend({
       .then(result => {
         this.set('errorMessage', 'Registration successful, please login to continue');
         this.set('register', false);
-        this.set('password', '');
-        this.set('passwordRepeat', '');
+        this.clearForm();
+        this.set('username', result.user.username);
       })
       .catch(error => {
         this.set('errorMessage', reason.error || reason);
       });
+  },
+
+  clearForm() {
+    this.set('errorMessage', null);
+    this.set('username', null);
+    this.set('password', null);
+    this.set('passwordRepeat', null);
   }
 });
