@@ -1,8 +1,13 @@
-<nav>
-    {{#if session.isAuthenticated}}
-      Authenticated
-    {{else}}
-      Not authenticated
-    {{/if}}
-</nav>
-{{outlet}}
+<div class="application-container">
+    <nav class="nav-bar">
+      {{#if session.isAuthenticated}}
+          Authenticated
+      {{else}}
+          Not authenticated
+      {{/if}}
+    </nav>
+
+  <div class="outlet">
+    {{outlet}}
+  </div>
+</div>
