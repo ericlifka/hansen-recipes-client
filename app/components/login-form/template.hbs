@@ -1,44 +1,44 @@
 <div class="floating-box">
-    <form {{action 'processForm' on='submit'}}>
+  <form {{action 'processForm' on='submit'}}>
 
-      {{#if errorMessage}}
-          <p>{{errorMessage}}</p>
-      {{/if}}
+    {{#if errorMessage}}
+      <p>{{errorMessage}}</p>
+    {{/if}}
 
-        <div class="input-group">
-            <label for='username'>Username</label>
-          {{input id='username' placeholder='Username' value=username}}
-        </div>
+    <div class="input-group">
+      <label for='username'>Username</label>
+      {{input id='username' placeholder='Username' value=username}}
+    </div>
 
-        <div class="input-group">
-            <label for='password'>Password</label>
-          {{input id='password' placeholder='Password' type='password' value=password}}
-        </div>
+    <div class="input-group">
+      <label for='password'>Password</label>
+      {{input id='password' placeholder='Password' type='password' value=password}}
+    </div>
 
-      {{#if register}}
-          <div class="input-group">
-              <label for='repeat'>Re-enter password</label>
-            {{input id='repeat' placeholder='Re-enter password' type='password' value=passwordRepeat}}
-          </div>
-      {{/if}}
+    {{#if register}}
+      <div class="input-group">
+        <label for='repeat'>Re-enter password</label>
+        {{input id='repeat' placeholder='Re-enter password' type='password' value=passwordRepeat}}
+      </div>
+    {{/if}}
 
-        <div class="input-group">
-            <button type="submit" class="primary">
-              {{#if register}}
-                  Register
-              {{else}}
-                  Login
-              {{/if}}
-            </button>
-        </div>
-        <div class="input-group">
-            <button type="button" class="secondary" {{action 'toggleRegistration'}}>
-              {{#if register}}
-                  Cancel
-              {{else}}
-                  Register
-              {{/if}}
-            </button>
-        </div>
-    </form>
+    <div class="input-group">
+      <button type="submit" class="primary">
+        {{#if register}}
+          Register
+        {{else}}
+          Login
+        {{/if}}
+      </button>
+    </div>
+    <div class="input-group">
+      <button type="button" class="secondary" {{action 'toggleRegistration'}}>
+        {{#if register}}
+          Cancel
+        {{else}}
+          Register
+        {{/if}}
+      </button>
+    </div>
+  </form>
 </div>
