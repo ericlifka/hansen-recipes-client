@@ -1,12 +1,5 @@
 <div class="application-container">
-    <nav class="nav-bar">
-      {{#if session.isAuthenticated}}
-          Authenticated
-      {{else}}
-          Not authenticated
-      {{/if}}
-    </nav>
-
+  {{nav-bar}}
   <div class="outlet">
     {{outlet}}
   </div>
