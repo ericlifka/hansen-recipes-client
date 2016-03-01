@@ -1,5 +1,10 @@
 <div class="floating-box">
     <form {{action 'processForm' on='submit'}}>
+
+      {{#if errorMessage}}
+          <p>{{errorMessage}}</p>
+      {{/if}}
+
         <div class="input-group">
             <label for='username'>Username</label>
           {{input id='username' placeholder='username' value=username}}
@@ -35,9 +40,5 @@
               {{/if}}
             </button>
         </div>
-
-      {{#if errorMessage}}
-          <p>{{errorMessage}}</p>
-      {{/if}}
     </form>
 </div>
