@@ -10,11 +10,11 @@ export default Controller.extend({
       return this.get('session').authenticate('authenticator:username-password', username, password)
     },
 
-    register(username, password) {
+    register(username, password, signupKey) {
       return request({
         url: '/register',
         type: 'POST',
-        data: { username, password }
+        data: { username, password, signupKey }
       });
     }
   }
