@@ -1,9 +1,14 @@
 import Ember from 'ember';
-const { Component } = Ember;
+const { Component, computed } = Ember;
 
 export default Component.extend({
   classNames: [ 'login-form' ],
   register: false,
+
+  usernameError: false,
+  passwordError: false,
+  passwordRepeatError: false,
+  signupKeyError: false,
 
   didInsertElement() {
     this._super(...arguments);
@@ -13,12 +18,15 @@ export default Component.extend({
 
   actions: {
     processForm() {
+      this.clearErrors();
+
       if (this.get('register')) {
         this.processRegistration();
       } else {
         this.processLogin();
       }
     },
+
     toggleRegistration() {
       this.clearForm();
       this.toggleProperty('register');
@@ -27,7 +35,12 @@ export default Component.extend({
   },
 
   processLogin() {
-    const { username, password } = this.getProperties('username', 'password');
+    const username = this.get('username');
+    const password = this.get('password');
+
+    if (this.validateFields('username', 'password')) {
+      return;
+    }
 
     this.attrs.submitLogin(username, password)
       .then(() => this.clearForm())
@@ -37,9 +50,20 @@ export default Component.extend({
   },
 
   processRegistration() {
-    const { username, password, passwordRepeat } = this.getProperties('username', 'password', 'passwordRepeat');
+    const fields = [ 'username', 'password', 'passwordRepeat', 'signupKey' ];
+    const { username, password, passwordRepeat, signupKey } = this.getProperties(...fields);
 
-    this.attrs.submitRegister(username, password)
+    if (this.validateFields(...fields)) {
+      return;
+    }
+
+    if (password !== passwordRepeat) {
+      this.set('passwordError', true);
+      this.set('passwordRepeatError', true);
+      return;
+    }
+
+    this.attrs.submitRegister(username, password, signupKey)
       .then(result => {
         this.set('register', false);
         this.clearForm();
@@ -53,9 +77,30 @@ export default Component.extend({
   },
 
   clearForm() {
-    this.set('errorMessage', null);
+    this.clearErrors();
     this.set('username', null);
     this.set('password', null);
     this.set('passwordRepeat', null);
+  },
+
+  clearErrors() {
+    this.set('usernameError', false);
+    this.set('passwordError', false);
+    this.set('passwordRepeatError', false);
+    this.set('signupKeyError', false);
+    this.set('errorMessage', null);
+  },
+
+  validateFields(...fields) {
+    let hadError = false;
+
+    fields.forEach(field => {
+      if (!this.get(field)) {
+        this.set(`${field}Error`, true);
+        hadError = true;
+      }
+    });
+
+    return hadError;
   }
 });

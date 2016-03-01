@@ -5,18 +5,18 @@
       <p>{{errorMessage}}</p>
     {{/if}}
 
-    <div class="input-group">
+    <div class="input-group {{if usernameError 'error'}}">
       <label for='username'>Username</label>
       {{input id='username' placeholder='Username' value=username}}
     </div>
 
-    <div class="input-group">
+    <div class="input-group {{if passwordError 'error'}}">
       <label for='password'>Password</label>
       {{input id='password' placeholder='Password' type='password' value=password}}
     </div>
 
     {{#if register}}
-      <div class="input-group">
+      <div class="input-group {{if passwordRepeatError 'error'}}">
         <label for='repeat'>Re-enter password</label>
         {{input id='repeat' placeholder='Re-enter password' type='password' value=passwordRepeat}}
       </div>
@@ -27,7 +27,7 @@
           </div>
       </div>
 
-      <div class="input-group">
+      <div class="input-group {{if signupKeyError 'error'}}">
         <label for='signup-key'>Signup key</label>
         {{input id='signup-key' placeholder='Signup key' value=signupKey}}
       </div>
