@@ -4,12 +4,21 @@
 
   .floating-box {
     background-color: white;
-    padding: 60px 50px;
-
     box-shadow: 0 3px 15px 0 @Cyan-shadow-light;
+
+    flex-grow: 1;
+    padding: 20px;
+    margin: 20px;
   }
 
-  form {
-    min-width: 400px;
+  @media (min-width: 1000px) {
+    .floating-box {
+      padding: 60px 50px;
+      flex-grow: 0;
+    }
+
+    form {
+      min-width: 400px;
+    }
   }
 }
