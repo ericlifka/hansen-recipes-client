@@ -5,5 +5,11 @@ export default Component.extend({
   classNames: [ 'nav-bar' ],
   classNameBindings: [ 'session.isAuthenticated::hidden' ],
 
-  session: inject.service()
+  session: inject.service(),
+
+  actions: {
+    logout() {
+      this.get('session').invalidate();
+    }
+  }
 });
