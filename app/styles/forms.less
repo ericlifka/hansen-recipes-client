@@ -1,12 +1,17 @@
 .input-group {
   display: flex;
+  border-radius: 2px;
   margin-bottom: 15px;
+  border: 1px solid transparent;
   &:last-child {
     margin-bottom: 0;
   }
+  &.error {
+    border-color: red;
+  }
 
   .message {
-    padding: 5px 15px 0px 10px;
+    padding: 5px 15px 0 10px;
   }
 
   label {
@@ -17,10 +22,6 @@
     flex-grow: 1;
     font-size: 18px;
     padding: 10px 5px 10px 15px;
-  }
-
-  &.error input {
-    border: 1px solid red;
   }
 
   button {
