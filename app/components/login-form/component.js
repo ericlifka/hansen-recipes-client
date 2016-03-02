@@ -5,6 +5,9 @@ export default Component.extend({
   classNames: [ 'login-form' ],
   register: false,
 
+  errorMessage:'test error',
+  successMessage: 'test success',
+
   usernameError: false,
   passwordError: false,
   passwordRepeatError: false,

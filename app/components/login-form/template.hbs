@@ -2,15 +2,15 @@
   <form {{action 'processForm' on='submit'}}>
 
     {{#if errorMessage}}
-      <div class="input-group error">
-          <div class="message">
+      <div class="input-group">
+          <div class="message error">
             {{errorMessage}}
           </div>
       </div>
     {{/if}}
     {{#if successMessage}}
-      <div class="input-group success">
-        <div class="message">
+      <div class="input-group">
+        <div class="message success">
           {{successMessage}}
         </div>
       </div>
