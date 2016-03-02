@@ -3,35 +3,36 @@
   @success-color: #007100;
 
   display: flex;
-  border-radius: 2px;
   border-left: 5px solid transparent;
   margin-left: -5px;
   margin-bottom: 15px;
   &:last-child {
     margin-bottom: 0;
   }
+
+  &.error, &.success {
+    .message {
+      font-weight: bold;
+      padding: 14px 15px 14px 10px;
+    }
+  }
+
   &.error {
     border-left-color: @error-color;
+    .message {
+      color: @error-color;
+    }
+  }
+
+  &.success {
+    border-left-color: @success-color;
+    .message {
+      color: @success-color;
+    }
   }
 
   .message {
     padding: 5px 15px 0 10px;
-
-    &.error,
-    &.success {
-      border-left: 5px solid;
-      font-weight: bold;
-      padding-bottom: 5px;
-
-    }
-    &.error {
-      color: @error-color;
-      border-left-color: @error-color;
-    }
-    &.success {
-      color: @success-color;
-      border-left-color: @success-color;
-    }
   }
 
   label {

@@ -2,15 +2,15 @@
   <form {{action 'processForm' on='submit'}}>
 
     {{#if errorMessage}}
-      <div class="input-group">
-          <div class="message error">
-            {{errorMessage}}
-          </div>
+      <div class="input-group error">
+        <div class="message">
+          {{errorMessage}}
+        </div>
       </div>
     {{/if}}
     {{#if successMessage}}
-      <div class="input-group">
-        <div class="message success">
+      <div class="input-group success">
+        <div class="message">
           {{successMessage}}
         </div>
       </div>
@@ -33,9 +33,9 @@
       </div>
 
       <div class="input-group">
-          <div class="message">
-              This app is in private beta. Please contact Eric Lifka for a signup key to create an account.
-          </div>
+        <div class="message">
+          This app is in private beta. Please contact Eric Lifka for a signup key to create an account.
+        </div>
       </div>
 
       <div class="input-group {{if signupKeyError 'error'}}">
