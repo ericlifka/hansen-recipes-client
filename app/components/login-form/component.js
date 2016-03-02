@@ -68,7 +68,7 @@ export default Component.extend({
         this.set('register', false);
         this.clearForm();
         this.set('username', result.user.username);
-        this.set('errorMessage', 'Registration successful, please login to continue');
+        this.set('successMessage', 'Registration successful, please login to continue');
         Ember.run.next(() => this.$('input#password').focus());
       })
       .catch(result => {
@@ -99,6 +99,7 @@ export default Component.extend({
     this.set('passwordRepeatError', false);
     this.set('signupKeyError', false);
     this.set('errorMessage', null);
+    this.set('successMessage', null);
   },
 
   validateFields(...fields) {
