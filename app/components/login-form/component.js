@@ -71,8 +71,17 @@ export default Component.extend({
         this.set('errorMessage', 'Registration successful, please login to continue');
         Ember.run.next(() => this.$('input#password').focus());
       })
-      .catch(reason => {
-        this.set('errorMessage', reason.error || reason);
+      .catch(result => {
+        const code = result.jqXHR.status;
+
+        if (code === 401) {
+          this.set('signupKeyError', true);
+        }
+        if (code === 400) {
+          this.set('usernameError', true);
+        }
+
+        this.set('errorMessage', result.jqXHR.responseJSON.error);
       });
   },
 
