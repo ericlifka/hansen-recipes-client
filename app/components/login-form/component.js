@@ -90,6 +90,7 @@ export default Component.extend({
     this.set('username', null);
     this.set('password', null);
     this.set('passwordRepeat', null);
+    this.set('signupKey', null);
   },
 
   clearErrors() {
