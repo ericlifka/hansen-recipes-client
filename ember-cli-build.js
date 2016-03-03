@@ -1,6 +1,8 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var funnel = require('broccoli-funnel');
+var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
@@ -21,6 +23,14 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/ic-ajax/dist/named-amd/main.js');
+  app.import('bower_components/ionicons/css/ionicons.css');
 
-  return app.toTree();
+  var ionicons = funnel('bower_components/ionicons/fonts', {
+    srcDir: '/',
+    destDir: '/fonts'
+  });
+
+  return mergeTrees([ ionicons, app.toTree() ], {
+    overwrite: true
+  });
 };
