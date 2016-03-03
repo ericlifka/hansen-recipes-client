@@ -4,3 +4,18 @@
 <div class="navigation-entity">
     <button type="button" {{action 'logout'}}>logout</button>
 </div>
+
+{{#link-to 'index' class="navigation-entity"}}
+  <i class="nav-icon ion-ios-home-outline"></i>
+  <span class="nav-text">Home</span>
+{{/link-to}}
+
+{{#link-to 'favorites' class="navigation-entity"}}
+    <i class="nav-icon ion-ios-star-outline "></i>
+    <span class="nav-text">Favorites</span>
+{{/link-to}}
+
+{{#link-to 'search' class="navigation-entity"}}
+    <i class="nav-icon ion-ios-search-strong"></i>
+    <span class="nav-text">Recipes</span>
+{{/link-to}}
