@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('login');
   this.route('search');
   this.route('favorites');
+  this.route('plan');
 });
 
 export default Router;
