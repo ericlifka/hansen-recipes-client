@@ -5,24 +5,24 @@ export default DS.RESTSerializer.extend({
     console.log(arguments);
   },
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-    var model = payload[ 0 ];
-
     return {
-      data: [
-        {
-          type: primaryModelClass.modelName,
-          id: model.id,
-          attributes: this.attributesFromRawModel(model)
-        }
-      ]
+      data: payload.map(raw => this.modelFromRaw(raw, primaryModelClass))
     };
   },
 
-  attributesFromRawModel(model) {
-    var attributes = { };
-    Object.keys(model).forEach(key => {
+  modelFromRaw(raw, modelClass) {
+    return {
+      type: modelClass.modelName,
+      id: raw.id,
+      attributes: this.attributesFromRaw(raw)
+    };
+  },
+
+  attributesFromRaw(raw) {
+    var attributes = {};
+    Object.keys(raw).forEach(key => {
       if (key !== "id") {
-        attributes[ key ] = model[ key ];
+        attributes[ key ] = raw[ key ];
       }
     });
     return attributes;
