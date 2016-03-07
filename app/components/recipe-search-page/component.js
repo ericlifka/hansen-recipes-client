@@ -1,8 +1,10 @@
 import Ember from 'ember';
-const { Component, computed } = Ember;
+const { Component, computed, inject } = Ember;
 
 export default Component.extend({
   classNames: ['recipe-search-page'],
+
+  store: inject.service(),
 
   actions: {
     openTagsFilterPanel() {
@@ -17,5 +19,10 @@ export default Component.extend({
       this.set('tagsPanel', false);
       this.set('ingredientsPanel', false);
     }
-  }
+  },
+
+  availableTags: computed(function () {
+
+    this.get('store').findAllTags();
+  })
 });
