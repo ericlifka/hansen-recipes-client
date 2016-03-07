@@ -26,7 +26,13 @@
 
 <div class="filter-panel tags {{if tagsPanel 'expanded'}}">
   <div class="content">
-
+    {{#each availableTags as |tag|}}
+      <div class="selectable-tag">
+        {{tag.name}}
+      </div>
+    {{else}}
+      no tags found
+    {{/each}}
   </div>
   <div class="footer">
     <button class="btn secondary" role="button" {{action "closeFilterPanels"}}>

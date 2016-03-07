@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { promiseArray } from 'hansen-recipes-client/utils/promise-helpers';
 const { Component, computed, inject } = Ember;
 
 export default Component.extend({
@@ -22,7 +23,9 @@ export default Component.extend({
   },
 
   availableTags: computed(function () {
-
-    this.get('store').findAllTags();
+    return promiseArray(
+      this.get('store').findAllTags(),
+      'tag-search'
+    );
   })
 });

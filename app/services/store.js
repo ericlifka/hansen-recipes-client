@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import { request } from 'ic-ajax';
 const { Service } = Ember;
 
+
 export default Service.extend({
-  findAll(type) {
-    console.log('find for type', type);
+  findAllTags() {
+    return request('/tags');
   }
 });
