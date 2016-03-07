@@ -13,17 +13,27 @@
 
 <div class="filters">
   <div class="filter">
-    <button class="btn secondary" role="button">Tags</button>
+    <button class="btn secondary" role="button" {{action "openTagsFilterPanel"}}>
+      Tags
+    </button>
   </div>
   <div class="filter">
-    <button class="btn secondary" role="button">Ingredients</button>
+    <button class="btn secondary" role="button" {{action "openIngredientsFilterPanel"}}>
+      Ingredients
+    </button>
   </div>
 </div>
 
-<div class="filter-panel tags">
+<div class="filter-panel tags {{if tagsPanel 'expanded'}}">
 
+  <button class="btn secondary" role="button" {{action "closeFilterPanels"}}>
+    Close
+  </button>
 </div>
 
-<div class="filter-panel ingredients">
+<div class="filter-panel ingredients {{if ingredientsPanel 'expanded'}}">
 
+  <button class="btn secondary" role="button" {{action "closeFilterPanels"}}>
+    Close
+  </button>
 </div>
