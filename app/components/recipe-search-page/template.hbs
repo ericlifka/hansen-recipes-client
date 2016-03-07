@@ -1,12 +1,14 @@
 <div class="primary-search">
   <div class="input-group">
     <label for="recipe-name-search">Search by name</label>
-    {{input id="recipe-name-search" value=nameSearchInput placeholder="Search by name"}}
+    {{input id="recipe-name-search" value=nameSearchInput placeholder="Search by recipe name"}}
   </div>
 </div>
 
 <div class="results-pane">
-  Search results go here
+  <div class="no-results-message">
+    Add a filter or start typing to see recipes.
+  </div>
 </div>
 
 <div class="filters">
