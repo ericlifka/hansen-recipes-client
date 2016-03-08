@@ -27,11 +27,7 @@
 <div class="filter-panel tags {{if tagsPanel 'expanded'}}">
   <div class="content">
     {{#each availableTags as |tag|}}
-      <div class="selectable-tag">
-        {{tag.name}}
-      </div>
-    {{else}}
-      no tags found
+      {{selectable-tag text=tag.name}}
     {{/each}}
   </div>
   <div class="footer">
