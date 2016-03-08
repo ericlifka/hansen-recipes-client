@@ -5,5 +5,9 @@ export default Component.extend({
   tagName: 'button',
   classNames: [ 'selectable-tag' ],
   attributeBindings: [ 'role' ],
-  role: 'button'
+  role: 'button',
+
+  click() {
+    this.attrs.onSelect();
+  }
 });

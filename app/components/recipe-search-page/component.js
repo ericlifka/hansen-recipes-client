@@ -19,6 +19,12 @@ export default Component.extend({
     closeFilterPanels() {
       this.set('tagsPanel', false);
       this.set('ingredientsPanel', false);
+    },
+
+    addFilter(type, entity) {
+      console.log('add filter', type, entity);
+
+      this.send('closeFilterPanels');
     }
   },
 
