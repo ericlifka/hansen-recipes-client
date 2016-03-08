@@ -2,6 +2,8 @@ import Ember from 'ember';
 const { Component, computed } = Ember;
 
 export default Component.extend({
-  classNames: [ 'selectable-tag' ]
-
+  tagName: 'button',
+  classNames: [ 'selectable-tag' ],
+  attributeBindings: [ 'role' ],
+  role: 'button'
 });
