@@ -26,7 +26,7 @@
 
 <div class="filter-panel tags {{if tagsPanel 'expanded'}}">
   <div class="content">
-    {{#each availableTags as |tag|}}
+    {{#each tagFilters as |tag|}}
       {{selectable-tag
         text=tag.name
         onSelect=(action 'addFilter' 'tag' tag)}}
@@ -41,7 +41,11 @@
 
 <div class="filter-panel ingredients {{if ingredientsPanel 'expanded'}}">
   <div class="content">
-
+    {{#each ingredientFilters as |ingredient|}}
+      {{selectable-tag
+        text=ingredient.name
+        onSelect=(action 'addFilter' 'ingredient' ingredient)}}
+    {{/each}}
   </div>
   <div class="footer">
     <button class="btn secondary" role="button" {{action "closeFilterPanels"}}>

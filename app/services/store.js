@@ -6,5 +6,9 @@ const { Service } = Ember;
 export default Service.extend({
   findAllTags() {
     return request('/tags');
+  },
+
+  findAllIngredients() {
+    return request('/ingredients');
   }
 });

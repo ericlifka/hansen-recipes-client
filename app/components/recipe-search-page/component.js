@@ -20,7 +20,6 @@ export default Component.extend({
       this.set('tagsPanel', false);
       this.set('ingredientsPanel', false);
     },
-
     addFilter(type, entity) {
       console.log('add filter', type, entity);
 
@@ -28,10 +27,17 @@ export default Component.extend({
     }
   },
 
-  availableTags: computed(function () {
+  tagFilters: computed(function () {
     return promiseArray(
       this.get('store').findAllTags(),
       'tag-search'
+    );
+  }),
+
+  ingredientFilters: computed(function () {
+    return promiseArray(
+      this.get('store').findAllIngredients(),
+      'ingredient-search'
     );
   })
 });
