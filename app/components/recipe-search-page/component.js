@@ -7,6 +7,15 @@ export default Component.extend({
 
   store: inject.service(),
 
+  init() {
+    this._super(...arguments);
+
+    this.set('filters', {
+      tags: [],
+      ingredients: []
+    });
+  },
+
   actions: {
     openTagsFilterPanel() {
       this.set('tagsPanel', true);
@@ -21,8 +30,7 @@ export default Component.extend({
       this.set('ingredientsPanel', false);
     },
     addFilter(type, entity) {
-      console.log('add filter', type, entity);
-
+      this.get(`filters.${type}`).push(entity);
       this.send('closeFilterPanels');
     }
   },

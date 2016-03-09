@@ -29,7 +29,7 @@
     {{#each tagFilters as |tag|}}
       {{selectable-tag
         text=tag.name
-        onSelect=(action 'addFilter' 'tag' tag)}}
+        onSelect=(action 'addFilter' 'tags' tag)}}
     {{/each}}
   </div>
   <div class="footer">
@@ -44,7 +44,7 @@
     {{#each ingredientFilters as |ingredient|}}
       {{selectable-tag
         text=ingredient.name
-        onSelect=(action 'addFilter' 'ingredient' ingredient)}}
+        onSelect=(action 'addFilter' 'ingredients' ingredient)}}
     {{/each}}
   </div>
   <div class="footer">
