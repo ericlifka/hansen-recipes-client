@@ -23,6 +23,10 @@ export default Service.extend({
         this.processRequestData('ingredients', data));
   },
 
+  queryRecipes(filters) {
+    console.log(filters);
+  },
+
   processRequestData(type, data) {
     if (!Array.isArray(data)) {
       data = [ data ];

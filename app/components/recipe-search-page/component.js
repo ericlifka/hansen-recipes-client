@@ -11,6 +11,7 @@ export default Component.extend({
     this._super(...arguments);
 
     this.set('filters', {
+      name: '',
       tags: [],
       ingredients: []
     });
@@ -30,8 +31,10 @@ export default Component.extend({
       this.set('ingredientsPanel', false);
     },
     addFilter(type, entity) {
-      this.get(`filters.${type}`).push(entity);
       this.send('closeFilterPanels');
+
+      this.get(`filters.${type}`).push(entity);
+      this.refreshQuery();
     }
   },
 
@@ -47,5 +50,9 @@ export default Component.extend({
       this.get('store').findAllIngredients(),
       'ingredient-search'
     );
-  })
+  }),
+
+  refreshQuery() {
+    this.get('store').queryRecipes(this.get('filters'));
+  }
 });
