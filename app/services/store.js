@@ -12,13 +12,13 @@ export default Service.extend({
   },
 
   findAllTags() {
-    return  request('/tags')
+    return  request('/tags?populate=false')
       .then(data =>
         this.processRequestData('tags', data));
   },
 
   findAllIngredients() {
-    return request('/ingredients')
+    return request('/ingredients?populate=false')
       .then(data =>
         this.processRequestData('ingredients', data));
   },
