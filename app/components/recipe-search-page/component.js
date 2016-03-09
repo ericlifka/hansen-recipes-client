@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import { promiseArray } from 'hansen-recipes-client/utils/promise-helpers';
-const { Component, computed, inject } = Ember;
+const { Component, computed, inject, run } = Ember;
 
 export default Component.extend({
   classNames: ['recipe-search-page'],
 
   store: inject.service(),
+  inputDelay: 500,
 
   init() {
     this._super(...arguments);
@@ -34,9 +35,17 @@ export default Component.extend({
       this.send('closeFilterPanels');
 
       this.get(`filters.${type}`).push(entity);
-      this.refreshQuery();
+      run.debounce(this, this.refreshQuery, this.inputDelay);
     }
   },
+
+  nameFilterInput: computed({
+    get: () => "",
+    set(key, value) {
+      this.set('filters.name', value);
+      run.debounce(this, this.refreshQuery, this.inputDelay);
+    }
+  }),
 
   tagFilters: computed(function () {
     return promiseArray(
