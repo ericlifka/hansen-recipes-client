@@ -36,6 +36,10 @@ export default Component.extend({
 
       this.get(`filters.${type}`).pushObject(entity);
       run.debounce(this, this.refreshQuery, this.inputDelay);
+    },
+    removeFilter(type, entity) {
+      this.get(`filters.${type}`).removeObject(entity);
+      run.debounce(this, this.refreshQuery, this.inputDelay);
     }
   },
 

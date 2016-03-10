@@ -9,12 +9,16 @@
   <div class="active-filters">
     <div class="tags">
       {{#each filters.tags as |tag|}}
-        {{selectable-tag text=tag.name}}
+        {{selectable-tag
+          text=tag.name
+          onSelect=(action 'removeFilter' 'tags' tag)}}
       {{/each}}
     </div>
     <div class="ingredients">
       {{#each filters.ingredients as |ingredient|}}
-        {{selectable-tag text=ingredient.name}}
+        {{selectable-tag
+          text=ingredient.name
+          onSelect=(action 'removeFilter' 'ingredients' ingredient)}}
       {{/each}}
     </div>
   </div>
