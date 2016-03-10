@@ -11,6 +11,7 @@
       {{#each filters.tags as |tag|}}
         {{selectable-tag
           text=tag.name
+          showDelete=true
           onSelect=(action 'removeFilter' 'tags' tag)}}
       {{/each}}
     </div>
@@ -18,6 +19,7 @@
       {{#each filters.ingredients as |ingredient|}}
         {{selectable-tag
           text=ingredient.name
+          showDelete=true
           onSelect=(action 'removeFilter' 'ingredients' ingredient)}}
       {{/each}}
     </div>
