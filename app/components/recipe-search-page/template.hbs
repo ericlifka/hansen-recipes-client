@@ -7,22 +7,18 @@
 
 <div class="results-pane">
   <div class="active-filters">
-    <div class="tags">
-      {{#each filters.tags as |tag|}}
-        {{selectable-tag
-          text=tag.name
-          showDelete=true
-          onSelect=(action 'removeFilter' 'tags' tag)}}
-      {{/each}}
-    </div>
-    <div class="ingredients">
-      {{#each filters.ingredients as |ingredient|}}
-        {{selectable-tag
-          text=ingredient.name
-          showDelete=true
-          onSelect=(action 'removeFilter' 'ingredients' ingredient)}}
-      {{/each}}
-    </div>
+    {{#each filters.tags as |tag|}}
+      {{selectable-tag
+        text=tag.name
+        showDelete=true
+        onSelect=(action 'removeFilter' 'tags' tag)}}
+    {{/each}}
+    {{#each filters.ingredients as |ingredient|}}
+      {{selectable-tag
+        text=ingredient.name
+        showDelete=true
+        onSelect=(action 'removeFilter' 'ingredients' ingredient)}}
+    {{/each}}
   </div>
   <div class="no-results-message">
     Add a filter or start typing to see recipes.
