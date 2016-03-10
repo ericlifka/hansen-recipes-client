@@ -34,7 +34,7 @@ export default Component.extend({
     addFilter(type, entity) {
       this.send('closeFilterPanels');
 
-      this.get(`filters.${type}`).push(entity);
+      this.get(`filters.${type}`).pushObject(entity);
       run.debounce(this, this.refreshQuery, this.inputDelay);
     }
   },

@@ -6,6 +6,18 @@
 </div>
 
 <div class="results-pane">
+  <div class="active-filters">
+    <div class="tags">
+      {{#each filters.tags as |tag|}}
+        {{selectable-tag text=tag.name}}
+      {{/each}}
+    </div>
+    <div class="ingredients">
+      {{#each filters.ingredients as |ingredient|}}
+        {{selectable-tag text=ingredient.name}}
+      {{/each}}
+    </div>
+  </div>
   <div class="no-results-message">
     Add a filter or start typing to see recipes.
   </div>
