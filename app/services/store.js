@@ -8,11 +8,12 @@ export default Service.extend({
   init() {
     this._super(...arguments);
 
+    window.__store = this;
     this.set('records', {});
   },
 
   findAllTags() {
-    return  request('/tags?populate=false')
+    return request('/tags?populate=false')
       .then(data =>
         this.processRequestData('tags', data));
   },
