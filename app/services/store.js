@@ -1,15 +1,33 @@
 import Ember from 'ember';
 import { request } from 'ic-ajax';
+import Ingredient from 'hansen-recipes-client/models/ingredient';
+import Measurement from 'hansen-recipes-client/models/measurement';
+import Recipe from 'hansen-recipes-client/models/recipe';
+import Step from 'hansen-recipes-client/models/step';
+import Tag from 'hansen-recipes-client/models/tag';
 const { Service } = Ember;
-
 
 export default Service.extend({
 
   init() {
     this._super(...arguments);
-
     window.__store = this;
-    this.set('records', {});
+
+    this.set('records', {
+      ingredients: {},
+      measurements: {},
+      recipes: {},
+      steps: {},
+      tags: {}
+    });
+
+    this.set('models', {
+      ingredients: Ingredient,
+      measurements: Measurement,
+      recipes: Recipe,
+      steps: Step,
+      tags: Tag
+    });
   },
 
   findAllTags() {
