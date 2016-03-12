@@ -27,23 +27,33 @@ export default Service.extend({
   },
 
   findAll(type) {
-    let model = this.get(`models.${type}`);
-    if (!model) throw `Unsupported model type '${type}'`;
+    let modelDescriptor = this.get(`models.${type}`);
+    if (!modelDescriptor) throw `Unsupported model type '${type}'`;
 
-    return request(this.resourceURL(model))
-      .then(data => this.processRequestData(model, data));
+    return request(this.resourceURL(modelDescriptor))
+      .then(data => this.processRequestData(modelDescriptor, data));
   },
 
   queryRecipes(filters) {
     console.log(filters);
   },
 
-  processRequestData(model, data) {
+  processRequestData(modelDescriptor, data) {
     if (!Array.isArray(data)) {
-      return this.processRequestData(model, [ data ])[ 0 ];
+      return this.processRequestData(modelDescriptor, [ data ])[ 0 ];
     }
 
-    return data.map(record => Ember.Object.create(record));
+    return data.map(record => {
+      let model = Ember.Object.create();
+      Object.keys(modelDescriptor.attributes).forEach(attributeName => {
+        let attributeSpec = modelDescriptor.attributes[ attributeName ];
+
+        if (attributeSpec.type === 'literal') {
+          model.set(attributeName, record[ attributeName ]);
+        }
+      });
+      return model;
+    });
   },
 
   resourceURL(model) {
