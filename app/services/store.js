@@ -4,6 +4,7 @@ import Measurement from 'hansen-recipes-client/models/measurement';
 import Recipe from 'hansen-recipes-client/models/recipe';
 import Step from 'hansen-recipes-client/models/step';
 import Tag from 'hansen-recipes-client/models/tag';
+import { iterateObject } from 'hansen-recipes-client/utils/iterators';
 import { request } from 'ic-ajax';
 const { Service } = Ember;
 
@@ -45,9 +46,7 @@ export default Service.extend({
 
     return data.map(record => {
       let model = Ember.Object.create();
-      Object.keys(modelDescriptor.attributes).forEach(attributeName => {
-        let attributeSpec = modelDescriptor.attributes[ attributeName ];
-
+      iterateObject(modelDescriptor.attributes, (attributeSpec, attributeName) => {
         if (attributeSpec.type === 'literal') {
           model.set(attributeName, record[ attributeName ]);
         }
