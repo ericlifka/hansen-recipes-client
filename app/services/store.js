@@ -31,19 +31,19 @@ export default Service.extend({
     if (!model) throw `Unsupported model type '${type}'`;
 
     return request(this.resourceURL(type))
-      .then(data => this.processRequestData(type, data));
+      .then(data => this.processRequestData(model, data));
   },
 
   queryRecipes(filters) {
     console.log(filters);
   },
 
-  processRequestData(type, data) {
+  processRequestData(model, data) {
     if (!Array.isArray(data)) {
-      data = [ data ];
+      return this.processRequestData(model, [ data ])[ 0 ];
     }
 
-    return data.map(record => Ember.Object.create(record));
+    return data.map(record => model.create(record));
   },
 
   resourceURL(resourceType) {
