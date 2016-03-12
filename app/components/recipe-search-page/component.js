@@ -53,14 +53,14 @@ export default Component.extend({
 
   tagFilters: computed(function () {
     return promiseArray(
-      this.get('store').findAllTags(),
+      this.get('store').findAll('tags'),
       'tag-search'
     );
   }),
 
   ingredientFilters: computed(function () {
     return promiseArray(
-      this.get('store').findAllIngredients(),
+      this.get('store').findAll('ingredients'),
       'ingredient-search'
     );
   }),

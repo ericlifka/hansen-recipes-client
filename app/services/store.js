@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import { request } from 'ic-ajax';
 import Ingredient from 'hansen-recipes-client/models/ingredient';
 import Measurement from 'hansen-recipes-client/models/measurement';
 import Recipe from 'hansen-recipes-client/models/recipe';
 import Step from 'hansen-recipes-client/models/step';
 import Tag from 'hansen-recipes-client/models/tag';
+import { request } from 'ic-ajax';
 const { Service } = Ember;
 
 export default Service.extend({
@@ -30,16 +30,12 @@ export default Service.extend({
     });
   },
 
-  findAllTags() {
-    return request('/tags?populate=false')
-      .then(data =>
-        this.processRequestData('tags', data));
-  },
+  findAll(type) {
+    let model = this.get('models').get(type);
+    if (!model) throw `Unsupported model type '${type}'`;
 
-  findAllIngredients() {
-    return request('/ingredients?populate=false')
-      .then(data =>
-        this.processRequestData('ingredients', data));
+    return request(model.get('resourceLocation'))
+      .then(data => this.processRequestData(type, data));
   },
 
   queryRecipes(filters) {
