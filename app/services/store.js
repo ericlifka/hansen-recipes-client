@@ -30,7 +30,7 @@ export default Service.extend({
     let model = this.get(`models.${type}`);
     if (!model) throw `Unsupported model type '${type}'`;
 
-    return request(this.resourceURL(type))
+    return request(this.resourceURL(model))
       .then(data => this.processRequestData(model, data));
   },
 
@@ -43,10 +43,10 @@ export default Service.extend({
       return this.processRequestData(model, [ data ])[ 0 ];
     }
 
-    return data.map(record => model.create(record));
+    return data.map(record => Ember.Object.create(record));
   },
 
-  resourceURL(resourceType) {
-    return `/${resourceType}`; // lol fancy shit
+  resourceURL(model) {
+    return `/${model.get('resourceName')}s`; // lol fancy shit
   }
 });
