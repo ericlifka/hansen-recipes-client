@@ -50,6 +50,8 @@ export default Service.extend({
         if (attributeSpec.type === 'literal') {
           model.set(attributeName, record[ attributeName ]);
         }
+
+        model.set('id', record.id);
       });
       return model;
     });
