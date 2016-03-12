@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.object.extend({
+export default Ember.Object.extend({
   resourceLocation: '/recipes',
 
   attributes: {
