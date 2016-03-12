@@ -7,27 +7,23 @@ import Tag from 'hansen-recipes-client/models/tag';
 import { request } from 'ic-ajax';
 const { Service } = Ember;
 
+const __MODELS__ = {
+  ingredients: Ingredient,
+  measurements: Measurement,
+  recipes: Recipe,
+  steps: Step,
+  tags: Tag
+};
+
 export default Service.extend({
 
   init() {
     this._super(...arguments);
     window.__store = this;
 
-    this.set('records', {
-      ingredients: {},
-      measurements: {},
-      recipes: {},
-      steps: {},
-      tags: {}
-    });
-
-    this.set('models', {
-      ingredients: Ingredient,
-      measurements: Measurement,
-      recipes: Recipe,
-      steps: Step,
-      tags: Tag
-    });
+    this.set('records', {});
+    this.set('models', __MODELS__);
+    Object.keys(__MODELS__).forEach(name => this.set(`records.${name}`, {}));
   },
 
   findAll(type) {
