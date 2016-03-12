@@ -31,10 +31,10 @@ export default Service.extend({
   },
 
   findAll(type) {
-    let model = this.get('models').get(type);
+    let model = this.get(`models.${type}`);
     if (!model) throw `Unsupported model type '${type}'`;
 
-    return request(model.get('resourceLocation'))
+    return request(this.resourceURL(type))
       .then(data => this.processRequestData(type, data));
   },
 
@@ -48,5 +48,9 @@ export default Service.extend({
     }
 
     return data.map(record => Ember.Object.create(record));
+  },
+
+  resourceURL(resourceType) {
+    return `/${resourceType}`; // lol fancy shit
   }
 });
